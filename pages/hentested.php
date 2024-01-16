@@ -1,11 +1,18 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . '/shareme/includes/functions.php';
-include_once $_SERVER['DOCUMENT_ROOT'] . '/shareme/includes/js_functions.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/style.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/config.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/includes/functions.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/includes/js_functions.php';
+
+$userID = getCookie('userID');
+if ($userID) {
+    $userDetails = getUserDetailsByID($userID);
+}
+$pickupLocs = getPickupLocs('Bergen');
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nb">
 
 <head>
     <meta charset="UTF-8">
@@ -14,91 +21,68 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/style.php';
     <title>Hentested - Kledeli</title>
 </head>
 
-<body>
+<body class="w-full">
 
-    <section class="main">
+    <section class="main !block md:!flex">
         <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/includes/sidebar.php'; ?>
 
-        <section class="right-section">
+        <section class="right-section !w-[95%] mx-auto">
             <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php'; ?>
 
             <section class="body-section">
                 <div class="delivery-cont">
-                    <div class="delivery-header-cont">
+                    <div class="flex w-[90%] md:w-1/2 h-8 justify-center items-center mx-auto mt-6 md:mt-0 gap-2 md:gap-10">
                         <label for="delivery">Velg hentested:</label>
-                        <select id="delivery">
+                        <select class="border-0 bg-gray-100 dark:bg-gray-800 p-1 rounded-md" id="delivery">
                             <option value="option1">Bergen</option>
                             <option value="option2">Førde og Haugesund</option>
                         </select>
                     </div>
 
-                    <div class="delivery-body-cont">
+                    <div class="md:flex flex-wrap gap-10 justify-center md:h-[80vh] overflow-none md:overflow-y-scroll mt-6 md:mt-10 mb-5">
 
-                        <table>
-                            <tr>
-                                <th class="table-map">Kart</th>
-                                <th class="table-store">Butikk</th>
-                                <th class="table-address">Addresse</th>
-                                <th class="table-description">Beskrivelse</th>
-                                <th></th>
-                            </tr>
-                            <tr>
-                                <td><iframe
-                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63110.52442910068!2d5.334259003451742!3d60.3757917105875!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x463cf94ebb546bff%3A0xd2f3ceea1dba624b!2sPakkeboks%20KIWI%20B%C3%B8hmergaten!5e0!3m2!1sen!2sno!4v1695299082733!5m2!1sen!2sno"
-                                        width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"
-                                        referrerpolicy="no-referrer-when-downgrade"></iframe>
-                                </td>
-                                <td><strong>Pakkeboks Kiwi Bøhmergaten</strong></td>
-                                <td>Bøhmergaten 44, 5057 Bergen</td>
-                                <td>Pakkeboksen står plassert bak på høyresiden av
-                                    bygget.</td>
-                                <td>
-                                    <button class="delivery-button">Velg</button>
-                                </td>
-                            </tr>
+                        <?php
+                        if ($pickupLocs) {
+                            while ($result = $pickupLocs->fetch_assoc()) {
+                                if ($userDetails['pickup_loc_id'] == $result['id']) {
+                        ?>
+                                    <div class="bg-gray-100 dark:bg-gray-800 h-100 w-full md:w-2/5 mb-4 md:mb-0 p-4 rounded-xl" id="delivery-item-cont-chosen" data-item-id="<?php echo $result['id'] ?>" style="border: 2px solid #454545;">
+                                        <div class="delivery-map">
+                                            <?php echo $result['map'] ?>
+                                        </div>
+                                        <div class="delivery-name">
+                                            <?php echo $result['name'] ?>
+                                        </div>
+                                        <div class="delivery-address">
+                                            <?php echo $result['address'] ?> - <button class="delivery-read-more" onclick="showDeliveryDetails('delivery-<?php echo $result['id'] ?>')">Les
+                                                mer...</button>
+                                        </div>
+                                        <div class="delivery-desc" id="delivery-<?php echo $result['id'] ?>">
+                                            <?php echo $result['description'] ?>
+                                        </div>
+                                        <button id="delivery-btn-chosen" class="h-10 w-11/12 mx-auto mt-2 relative left-1/2 transform -translate-x-1/2 border-0 bg-white dark:bg-gray-600 rounded-lg text-base px-4" style="filter: invert(1);">Valgt</button>
+                                    </div>
 
-                            <tr>
-                                <td> <iframe
-                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1044.444869510047!2d5.344927596095116!3d60.30958660195474!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x463cf9c0e3f693a9%3A0x4a3714ab837cb68d!2sREMA%201000%20SKJOLD!5e0!3m2!1sen!2sno!4v1695296628911!5m2!1sen!2sno"
-                                        width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"
-                                        referrerpolicy="no-referrer-when-downgrade"></iframe>
-                                </td>
-                                <td><strong>Pakkeautomat Fanavegen</strong></td>
-                                <td>Fanavegen 83, 5239 Rådal</td>
-                                <td>Pakkeboksen står plassert foran Rema 1000</td>
-                                <td>
-                                    <button class="delivery-button">Velg</button>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td><iframe
-                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1971.3375149655462!2d5.330654277182518!3d60.39010307514533!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x463cff0381f9a6b1%3A0x45a24c210e74dbcc!2sPakkeboks%20Bergen%20Jernbanestasjon!5e0!3m2!1sen!2sno!4v1695299293752!5m2!1sen!2sno"
-                                        width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"
-                                        referrerpolicy="no-referrer-when-downgrade"></iframe>
-                                </td>
-                                <td><strong>Pakkeboks Bergen Jernbanestasjon</strong></td>
-                                <td>Strømgaten 4, 5015 Bergen</td>
-                                <td>Pakkeboksen står mellom Narvesen og
-                                    billettautomaten,
-                                    ved inngangen som fører til Bystasjonen</td>
-                                <td><button class="delivery-button">Velg</button></td>
-                            </tr>
-
-                            <tr>
-                                <td><iframe
-                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1971.3375149655462!2d5.330654277182518!3d60.39010307514533!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x463cff0381f9a6b1%3A0x45a24c210e74dbcc!2sPakkeboks%20Bergen%20Jernbanestasjon!5e0!3m2!1sen!2sno!4v1695299293752!5m2!1sen!2sno"
-                                        width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"
-                                        referrerpolicy="no-referrer-when-downgrade"></iframe>
-                                </td>
-                                <td><strong>Pakkeboks Åsane Senter 12</strong></td>
-                                <td>Åsane Senter 12, 5116 Ulset</td>
-                                <td>Pakkeautomaten står plassert i nederste etasje,
-                                    midt i
-                                    gamle Arken</td>
-                                <td><button class="delivery-button">Velg</button></td>
-                            </tr>
-                        </table>
+                                <?php } else { ?>
+                                    <div class="bg-gray-100 dark:bg-gray-800 h-100 w-full md:w-2/5 mb-4 md:mb-0 p-4 rounded-xl" id="delivery-item-cont-<?php echo $result['id'] ?>" data-item-id="<?php echo $result['id'] ?>">
+                                        <div class="delivery-map">
+                                            <?php echo $result['map'] ?>
+                                        </div>
+                                        <div class="delivery-name">
+                                            <?php echo $result['name'] ?>
+                                        </div>
+                                        <div class="delivery-address">
+                                            <?php echo $result['address'] ?> - <button class="delivery-read-more" onclick="showDeliveryDetails('delivery-<?php echo $result['id'] ?>')">Les
+                                                mer...</button>
+                                        </div>
+                                        <div class="delivery-desc" id="delivery-<?php echo $result['id'] ?>">
+                                            <?php echo $result['description'] ?>
+                                        </div>
+                                        <button id="<?php echo $result['id'] ?>" class="h-10 w-11/12 mx-auto mt-2 relative left-1/2 transform -translate-x-1/2 border-0 bg-white dark:bg-gray-900 rounded-lg text-base px-4" onclick="changeUserPickupLoc(this.id);">Velg</button>
+                                    </div>
+                        <?php }
+                            }
+                        } ?>
 
                     </div>
                 </div>
@@ -114,96 +98,142 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/style.php';
 
 </html>
 
-<style>
-/* delivery header part */
+<script>
+    const userID = parseInt('<?php echo $userID ?>');
 
-.delivery-header-cont {
-    display: flex;
-    /* flex-flow: column; */
+    function showDeliveryDetails(elementID) {
+        let element = document.getElementById(elementID);
+        // let btn = document.getElementById("btn-" + elementID);
+
+        if (element.style.display == "none" || element.style.display == "") {
+            element.style.display = "block";
+            // btn.style.display = "none";
+        } else {
+            element.style.display = "none";
+            // btn.style.display = "block";
+        }
+    }
+
+    function changeUserPickupLoc(pickup_loc_ID) {
+        if (!userID) {
+            return false;
+        }
+
+        let element = document.getElementById(`delivery-item-cont-${pickup_loc_ID}`);
+        let element_btn = document.getElementById(pickup_loc_ID);
+        let element_chosen = document.getElementById('delivery-item-cont-chosen');
+        let btn_chosen = document.getElementById('delivery-btn-chosen');
+
+        // console.log(pickup_loc_ID);
+
+        $.ajax({
+            url: '../xhr/pickup-loc.php?f=pickup-loc&s=change-user-pickup-loc',
+            type: 'POST',
+            data: {
+                userID: userID,
+                pickup_loc_ID: pickup_loc_ID
+            },
+            success: function(data) {
+                if (data) {
+                    // unset all styles first
+                    let element_chosen_data_id = element_chosen.getAttribute('data-item-id');
+                    element_chosen.style = 'border: unset';
+                    btn_chosen.style = 'filter: unset';
+                    btn_chosen.innerHTML = 'Velg';
+                    // then set their id back to their originals
+                    element_chosen.setAttribute('id', `delivery-item-cont-${element_chosen_data_id}`);
+                    btn_chosen.setAttribute('id', element_chosen_data_id);
+                    btn_chosen.setAttribute('onclick', 'changeUserPickupLoc(this.id)');
+                    // element_chosen_btn.remove();
+
+                    // set styles first
+                    element.style = 'border: 2px solid #454545;';
+                    element_btn.style = 'filter: invert(1);';
+                    element_btn.innerHTML = 'Valgt';
+                    // then set attributes
+                    element.setAttribute('id', 'delivery-item-cont-chosen');
+                    element_btn.setAttribute('id', 'delivery-btn-chosen');
+                }
+            }
+        });
+    }
+</script>
+
+<style>
+    /* delivery header part */
+
+    /* .delivery-header-cont {
+        display: flex;
+        /* flex-flow: column; 
     width: 50%;
     height: 8%;
-    /* background: black; */
+    /* background: black; 
     justify-content: center;
     align-items: center;
     margin: auto;
     gap: 10px;
-}
+    }
 
-select#delivery {
-    border: 0;
-    background: #f1f1f1;
-    padding: 5px;
-    border-radius: 4px;
-}
+    */
+    /* select#delivery {
+        border: 0;
+        background: #f1f1f1;
+        padding: 5px;
+        border-radius: 4px;
+    } */
 
-/* delivery body part */
-.delivery-body-cont {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5%;
-    height: 80vh;
-    /* background: black; */
+    /* delivery body part */
+    /* .delivery-body-cont {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5%;
+        height: 80vh;
+        /* background: black; 
     overflow: scroll;
-}
+    margin-bottom: 30px;
+    }
 
-.delivery-body-item {
-    width: 45%;
-    min-height: 550px;
-    position: relative;
-}
+    */
+    /* delivery item part */
+    /* .delivery-item-cont {
+        background: #F1F1F1;
+        height: 325px;
+        padding: 20px;
+        border-radius: 12px;
+        width: 40%;
+    } */
 
-.delivery-map {
-    /* margin: auto; */
-    /* position: relative; */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+    .delivery-name {
+        font-size: 21px;
+        font-weight: 600;
+        margin: 10px 0px 5px 0px;
+    }
 
-/* delivery details */
-h1.delivery-details-title {
-    font-size: 1.5rem;
-    margin: 20px 0px 0px 0px;
-}
+    .delivery-address {
+        opacity: 0.7;
+    }
 
-p.delivery-details-address {
-    margin: 0;
-    opacity: 0.8;
-}
+    button.delivery-read-more {
+        cursor: pointer;
+        text-decoration: underline;
+        border: 0;
+    }
 
-p.delivery-details-tips {
-    padding: 10px;
-    margin: 0;
-    opacity: 0.6;
-}
+    .delivery-desc {
+        display: none;
+        opacity: 0.7;
+    }
 
-/* */
-.delivery-details-button-cont {
-    display: flex;
-}
-
-p.delivery-details-tips {
-    padding: 10px;
-    margin: 0;
-    opacity: 0.6;
-    width: 60%;
-}
-
-button.delivery-button {
-    width: 90%;
-    border: 0;
-    height: 40px;
-    border-radius: 8px;
-}
-
-/* table */
-th.table-description,
-th.table-address,
-th.table-store {
-    width: 20%;
-}
-
-th.table-map {
-    width: 20%;
-}
+    button.delivery-button {
+        height: 40px;
+        width: 90%;
+        margin: 10px 0px 0px 0px;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        border: none;
+        background: #fff;
+        border-radius: 8px;
+        font-size: 15px;
+    }
 </style>

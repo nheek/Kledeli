@@ -26,16 +26,16 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/style.php';
                 <div class="body-options">
                     <div class="body-option-right">
 
-                        <div class="body-option-right-options">
+                        <button class="body-option-right-options">
                             <span>🙋‍♀️</span>
                             <span>Jente</span>
-                        </div>
-                        <div class="body-option-right-options">
+                        </button>
+                        <button class="body-option-right-options">
                             <span>🙋‍♂️</span>
                             <span>Gutt</span>
-                        </div>
+                        </button>
 
-                        <div class="body-option-right-options">
+                        <button class="body-option-right-options">
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                                 stroke-linejoin="round">
@@ -44,9 +44,9 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/style.php';
                                 <line x1="3" y1="18" x2="21" y2="18"></line>
                             </svg>
                             <span>Sort</span>
-                        </div>
+                        </button>
 
-                        <div class="body-option-right-options">
+                        <button class="body-option-right-options">
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                                 stroke-linejoin="round">
@@ -61,7 +61,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/style.php';
                                 <line x1="17" y1="16" x2="23" y2="16"></line>
                             </svg>
                             <span>Filter</span>
-                        </div>
+                        </button>
 
                     </div>
                 </div>
@@ -82,12 +82,14 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/style.php';
 
                             <div class="add-to-cart-cont">
                                 <span class="stocks-left">10 stocks left</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <path
-                                        d="M6 2L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4H6zM3.8 6h16.4M16 10a4 4 0 1 1-8 0" />
-                                </svg>
+                                <button class="add-to-cart-btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path
+                                            d="M6 2L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4H6zM3.8 6h16.4M16 10a4 4 0 1 1-8 0" />
+                                    </svg>
+                                </button>
                             </div>
 
                         </div>
@@ -108,12 +110,14 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/style.php';
 
                             <div class="add-to-cart-cont">
                                 <span class="stocks-left">10 stocks left</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <path
-                                        d="M6 2L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4H6zM3.8 6h16.4M16 10a4 4 0 1 1-8 0" />
-                                </svg>
+                                <button class="add-to-cart-btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path
+                                            d="M6 2L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4H6zM3.8 6h16.4M16 10a4 4 0 1 1-8 0" />
+                                    </svg>
+                                </button>
                             </div>
 
                         </div>
@@ -134,12 +138,14 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/style.php';
 
                             <div class="add-to-cart-cont">
                                 <span class="stocks-left">10 stocks left</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <path
-                                        d="M6 2L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4H6zM3.8 6h16.4M16 10a4 4 0 1 1-8 0" />
-                                </svg>
+                                <button class="add-to-cart-btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path
+                                            d="M6 2L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4H6zM3.8 6h16.4M16 10a4 4 0 1 1-8 0" />
+                                    </svg>
+                                </button>
                             </div>
 
                         </div>
@@ -160,12 +166,14 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/style.php';
 
                             <div class="add-to-cart-cont">
                                 <span class="stocks-left">10 stocks left</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <path
-                                        d="M6 2L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4H6zM3.8 6h16.4M16 10a4 4 0 1 1-8 0" />
-                                </svg>
+                                <button class="add-to-cart-btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path
+                                            d="M6 2L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4H6zM3.8 6h16.4M16 10a4 4 0 1 1-8 0" />
+                                    </svg>
+                                </button>
                             </div>
 
                         </div>
@@ -186,12 +194,14 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/style.php';
 
                             <div class="add-to-cart-cont">
                                 <span class="stocks-left">10 stocks left</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <path
-                                        d="M6 2L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4H6zM3.8 6h16.4M16 10a4 4 0 1 1-8 0" />
-                                </svg>
+                                <button class="add-to-cart-btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path
+                                            d="M6 2L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4H6zM3.8 6h16.4M16 10a4 4 0 1 1-8 0" />
+                                    </svg>
+                                </button>
                             </div>
 
                         </div>
@@ -212,12 +222,14 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/style.php';
 
                             <div class="add-to-cart-cont">
                                 <span class="stocks-left">10 stocks left</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <path
-                                        d="M6 2L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4H6zM3.8 6h16.4M16 10a4 4 0 1 1-8 0" />
-                                </svg>
+                                <button class="add-to-cart-btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path
+                                            d="M6 2L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4H6zM3.8 6h16.4M16 10a4 4 0 1 1-8 0" />
+                                    </svg>
+                                </button>
                             </div>
 
                         </div>
