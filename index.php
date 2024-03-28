@@ -1,4 +1,14 @@
 <?php
+// Enable error reporting
+error_reporting(E_ALL);
+
+// Optionally, display errors on the screen
+ini_set('display_errors', 1);
+
+// Your PHP code goes here
+?>
+
+<?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/style.php';
 ?>
 
