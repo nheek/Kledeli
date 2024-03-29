@@ -39,7 +39,9 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
             # Change to the appropriate directory..
-            cd apps && mkdir kledeli && cd kledeli
+            cd apps
+            mkdir kledeli
+            cd kledeli
             
             # Pull the Docker Compose project on the remote server
             docker pull ${{ secrets.DOCKERHUB_USERNAME }}/kledeli:latest
