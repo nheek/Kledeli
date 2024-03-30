@@ -57,6 +57,11 @@ jobs:
             curl -O -L https://raw.githubusercontent.com/nheek/kledeli/main/Dockerfile
             curl -O -L https://raw.githubusercontent.com/nheek/kledeli/main/docker-compose.yml
 
+            mkdir .custom_sql_settings
+            cd .custom_sql_settings
+            curl -O -L https://raw.githubusercontent.com/nheek/kledeli/main/.custom_sql_settings/my.cnf
+
+            cd ..
             mkdir .sql_data
             cd .sql_data
             curl -O -L https://raw.githubusercontent.com/nheek/kledeli/main/.sql_data/create_database.sql
