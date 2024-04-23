@@ -243,8 +243,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/includes/js_functions.php';
 
     function getSearchPage(inputEl) {
         let inputElementValue = inputEl.value;
-        console.log("get_pages/items.php?clothes_type=<?php echo $clothes_type ?>" + "&search-query=" + inputElementValue)
-        getPage("wardrobe-cont-get", "get_pages/items.php?clothes_type=<?php echo $clothes_type ?>" + "&search_query=" + inputElementValue);
+        getPage("wardrobe-cont-get", "get_pages/items.php?clothes_type=<?php if (isset($clothes_type)) { echo $clothes_type; }?>" + "&search_query=" + inputElementValue);
     }
     // if (!getCookie("userID")) {
     //     goToPage("/pages/register.php");
