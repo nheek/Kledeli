@@ -51,7 +51,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/style.php';
                         </div>
                     </div>
 
-                    <div class="mt-4 h-[300px] md:w-[47%] flex gap-5">
+                    <div class="mt-4 md:m-0 h-[300px] md:w-[47%] flex gap-5">
                         <div class="cursor-pointer h-full rounded-md w-1/2 bg-gray-200 dark:bg-gray-800 flex flex-col relative text-center overflow-hidden">
 
                             <div class="body-feed-img-cont-vertical">
@@ -71,7 +71,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/style.php';
                         </div>
                     </div>
 
-                    <div class="mt-4 mb-4 h-[300px] md:w-[47%] flex gap-5">
+                    <div class="mt-4 mb-4 md:m-0 h-[300px] md:w-[47%] flex gap-5">
                         <div class="cursor-pointer h-full rounded-md w-1/2 bg-gray-200 dark:bg-gray-800 flex flex-col relative text-center overflow-hidden">
 
                             <div class="body-feed-img-cont-vertical">
