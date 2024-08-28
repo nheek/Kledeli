@@ -134,7 +134,7 @@ function getLatestUserID()
     // Check if any rows were found
     if ($result->num_rows > 0) {
         // Output data of each row
-        return $result->fetch_assoc()["id"] + 1;
+        return $result->fetch_assoc()["id"];
     }
 }
 
@@ -288,7 +288,7 @@ function getUserWardrobe($userID)
     $userDetails = getUserDetailsByID($userID);
     $userWardrobe = json_decode($userDetails['wardrobe_items']);
 
-    if (count($userWardrobe) == 0) {
+    if (!$userWardrobe || count($userWardrobe) == 0) {
         return false;
     }
     $userWardrobeStr = implode(',', $userWardrobe);

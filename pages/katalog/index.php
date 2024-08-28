@@ -105,7 +105,6 @@ if (!$clothes_type) {
                 if (data == 'success') {
                     showWarning('Added to wardrobe', 'green');
                 } else {
-                    // console.log(data);
                     showWarning(data);
                 }
             }

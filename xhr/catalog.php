@@ -6,7 +6,6 @@ global $sqlConnect;
 
 if ($_GET['f'] == 'catalog') {
     if ($_GET['s'] == 'add-to-wardrobe') {
-
         $userID = mysqli_real_escape_string($sqlConnect, $_POST['userID']);
         $itemID = mysqli_real_escape_string($sqlConnect, $_POST['itemID']);
         $itemID = intval($itemID);

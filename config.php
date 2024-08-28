@@ -7,4 +7,4 @@ $sqlPass = $ENV['MYSQL_PASSWORD'];
 $sqlName = $ENV['MYSQL_DATABASE'];
 
 $sqlConnect = new mysqli($sqlHost, $sqlUser, $sqlPass, $sqlName);
-$sqlConnect->set_charset("utf8mb4");
+$sqlConnect->set_charset("utf8");

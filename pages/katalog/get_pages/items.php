@@ -7,7 +7,7 @@ $userID = getCookie('userID');
 $userWardrobe = [];
 if ($userID) {
     $userDetails = getUserDetailsByID($userID);
-    $userWardrobe = json_decode($userDetails['wardrobe_items']);
+    $userWardrobe = json_decode($userDetails['wardrobe_items']) ?? [];
 }
 $clothes_type = $_GET['clothes_type'];
 $gender = $_GET['gender'];
