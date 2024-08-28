@@ -80,7 +80,13 @@ $userPickupLoc = getPickupLocByID($userPickupLocID);
                 </div>
                 <div class="flex w-full justify-center items-center h-[25%]">
                     <h2 class="w-[45%] text-center text-xl font-semibold"><?php echo $userSubscription['name'] ?></h2>
-                    <section class="w-[45%] text-center text-xl font-semibold"><?php echo $userSubscription['price'] && " kr" ?></section>
+                    <section class="w-[45%] text-center text-xl font-semibold">
+                        <?php
+                            if (!empty($userSubscription['price'])) {
+                                echo $userSubscription['price'] . " kr";
+                            }
+                        ?>
+                    </section>
                 </div>
                 <div class="h-[30%] w-full relative">
                     <button class="b-0 rounded-md w-full text-xl bg-white dark:bg-gray-900 p-2 mt-2 absolute top-1/2 transform -translate-y-1/2 hover:invert" onclick="goToPage('/pages/abonnement');">
