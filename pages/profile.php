@@ -63,21 +63,36 @@ $userPickupLoc = getPickupLocByID($userPickupLocID);
             <!-- subscription container -->
             <section class="bg-cyan-200 dark:bg-cyan-800 h-[40%] w-full flex flex-col items-center p-5 rounded-lg">
                 <div class="flex items-center h-[55%]">
-                    <img src="<?php echo $userSubscription['icon'] ?>" alt="subscription icon" class="text-center w-[35%]">
-                    <section class="h-[30%] flex items-center">
-                        <ul class="list-none ml-4 sub-details-ul">
-                            <?php foreach (json_decode($userSubscription['features']) as $feature) { ?>
-                                <li><?php echo $feature ?></li>
-                            <?php } ?>
-                        </ul>
-                    </section>
+                    <?php
+                        if ($userSubscription) {
+                    ?>
+                        <img src="<?php echo $userSubscription['icon'] ?>" alt="subscription icon" class="text-center w-[35%]">
+                        <section class="h-[30%] flex items-center">
+                            <ul class="list-none ml-4 sub-details-ul">
+                                <?php
+                                    if ($userSubscription) {
+                                        foreach (json_decode($userSubscription['features']) as $feature) { ?>
+                                            <li><?php echo $feature ?></li>
+                                <?php }} ?>
+                            </ul>
+                        </section>
+                    <?php } ?>
                 </div>
                 <div class="flex w-full justify-center items-center h-[25%]">
                     <h2 class="w-[45%] text-center text-xl font-semibold"><?php echo $userSubscription['name'] ?></h2>
-                    <section class="w-[45%] text-center text-xl font-semibold"><?php echo $userSubscription['price'] ?> kr</section>
+                    <section class="w-[45%] text-center text-xl font-semibold"><?php echo $userSubscription['price'] && " kr" ?></section>
                 </div>
                 <div class="h-[30%] w-full relative">
-                    <button class="b-0 rounded-md w-full text-xl bg-white dark:bg-gray-900 p-2 mt-2 absolute top-1/2 transform -translate-y-1/2 hover:invert" onclick="goToPage('/pages/abonnement');">Bytt abonnement</button>
+                    <button class="b-0 rounded-md w-full text-xl bg-white dark:bg-gray-900 p-2 mt-2 absolute top-1/2 transform -translate-y-1/2 hover:invert" onclick="goToPage('/pages/abonnement');">
+                        <?php
+                            if (!$userSubscription){
+                                echo "Velg ";
+                            } else {
+                                echo "Bytt ";
+                            }
+                        ?>
+                         abonnement
+                    </button>
                 </div>
             </section>
 
