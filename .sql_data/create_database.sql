@@ -13,7 +13,7 @@ USE kledeli;
 
 CREATE TABLE IF NOT EXISTS Clothes (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) DEFAULT NULL,
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `img` varchar(100) DEFAULT NULL,
   `typeOf` varchar(50) DEFAULT NULL,
   `stock` int(11) DEFAULT NULL,

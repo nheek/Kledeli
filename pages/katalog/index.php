@@ -91,7 +91,7 @@ if (!$clothes_type) {
 
     function addToUserWardrobe(itemID) {
         if (!userID) {
-            showWarning('Du må være logget på');
+            showWarning('Du må være pålogget');
             return false;
         }
         $.ajax({
@@ -103,9 +103,15 @@ if (!$clothes_type) {
             },
             success: function(data) {
                 if (data == 'success') {
-                    showWarning('Added to wardrobe', 'green');
+                    showWarning('Lagt til i garderobe', 'green');
                 } else {
                     showWarning(data);
+                    if (data == 'Velg et abonnement først') {
+                        showWarning(data + '. Redirecting...');
+                        setTimeout(() => {
+                            goToPage("/pages/abonnement");
+                        }, 3000);
+                    }
                 }
             }
         });

@@ -10,12 +10,17 @@ if ($_GET['f'] == 'catalog') {
         $itemID = mysqli_real_escape_string($sqlConnect, $_POST['itemID']);
         $itemID = intval($itemID);
         $userDetails = getUserDetailsByID($userID);
-        $userWardrobe = json_decode($userDetails['wardrobe_items']);
+        $userWardrobe = json_decode($userDetails['wardrobe_items']) ?? [];
         $newUserWardrobe = json_encode(addToArray($itemID, $userWardrobe));
         $newUserWardrobeLength = json_decode($newUserWardrobe);
         $userSubID = $userDetails['subscription_id'];
         $subDetails = getSubscriptionByID($userSubID);
         $subMax = $subDetails['max_item'];
+
+        if (!$subDetails) {
+            echo 'Velg et abonnement først';
+            return false;
+        }
 
         if (count($newUserWardrobeLength) > $subMax) {
             echo 'Insufficient wardrobe size, upgrade your subscription to add more.';
