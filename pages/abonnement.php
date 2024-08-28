@@ -9,7 +9,7 @@ $userDetails = getUserDetailsByID($userID);
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nb">
 
 <head>
     <meta charset="UTF-8">

@@ -3,14 +3,12 @@
 <script>
     tailwind.config = {
         darkMode: 'class',
-        // ...
     }
 </script>
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@400;600;700&display=swap');
 
     * {
-        /* font-family: 'Open Sans', sans-serif; */
         font-family: 'Poppins', sans-serif;
         text-decoration: none;
         color: inherit;
