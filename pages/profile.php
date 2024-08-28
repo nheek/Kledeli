@@ -85,7 +85,16 @@ $userPickupLoc = getPickupLocByID($userPickupLocID);
             <section class="bg-gray-100 dark:bg-gray-800 w-full px-4 pt-1 pb-4 rounded-md mt-4">
                 <h2 class="text-xl mt-2"><?php echo $userPickupLoc['name'] ?></h2>
                 <div class="pickup-map"><?php echo $userPickupLoc['map'] ?></div>
-                <button class="b-0 rounded-md w-[95%] text-xl bg-white dark:bg-gray-900 p-2 mt-2 relative left-1/2 transform -translate-x-1/2 hover:invert" onclick="goToPage('/pages/hentested')">Bytt hentested</button>
+                <button class="b-0 rounded-md w-[95%] text-xl bg-white dark:bg-gray-900 p-2 mt-2 relative left-1/2 transform -translate-x-1/2 hover:invert" onclick="goToPage('/pages/hentested')">
+                    <?php
+                        if (!$userPickupLoc) {
+                            echo "Velg ";
+                        } else {
+                            echo "Bytt ";
+                        }
+                    ?>
+                    hentested
+                </button>
             </section>
         </div>
     </div>

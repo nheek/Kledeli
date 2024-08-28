@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS Users (
   `mobile_no` varchar(100) DEFAULT NULL,
   `password` varchar(200) DEFAULT NULL,
   `subscription_id` int(11) DEFAULT NULL,
-  `pickup_loc_id` int(11) DEFAULT NULL,
+  `pickup_loc_id` int(11) DEFAULT 1,
   `wardrobe_items` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`wardrobe_items`)),
   `wardrobe_items_sizes` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
   PRIMARY KEY (`id`)

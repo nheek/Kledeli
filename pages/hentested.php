@@ -60,7 +60,7 @@ $pickupLocs = getPickupLocs('Bergen');
                                         <div class="delivery-desc" id="delivery-<?php echo $result['id'] ?>">
                                             <?php echo $result['description'] ?>
                                         </div>
-                                        <button id="delivery-btn-chosen" class="h-10 w-11/12 mx-auto mt-2 relative left-1/2 transform -translate-x-1/2 border-0 bg-white dark:bg-gray-600 rounded-lg text-base px-4" style="filter: invert(1);">Valgt</button>
+                                        <button id="delivery-btn-chosen" class="h-10 w-11/12 mx-auto mt-2 relative left-1/2 transform -translate-x-1/2 border-0 bg-white dark:bg-gray-600 rounded-lg text-base px-4 hover:invert" style="filter: invert(1);">Valgt</button>
                                     </div>
 
                                 <?php } else { ?>
@@ -78,7 +78,7 @@ $pickupLocs = getPickupLocs('Bergen');
                                         <div class="delivery-desc" id="delivery-<?php echo $result['id'] ?>">
                                             <?php echo $result['description'] ?>
                                         </div>
-                                        <button id="<?php echo $result['id'] ?>" class="h-10 w-11/12 mx-auto mt-2 relative left-1/2 transform -translate-x-1/2 border-0 bg-white dark:bg-gray-900 rounded-lg text-base px-4" onclick="changeUserPickupLoc(this.id);">Velg</button>
+                                        <button id="<?php echo $result['id'] ?>" class="h-10 w-11/12 mx-auto mt-2 relative left-1/2 transform -translate-x-1/2 border-0 bg-white dark:bg-gray-900 rounded-lg text-base px-4 hover:invert" onclick="changeUserPickupLoc(this.id);">Velg</button>
                                     </div>
                         <?php }
                             }
@@ -103,14 +103,11 @@ $pickupLocs = getPickupLocs('Bergen');
 
     function showDeliveryDetails(elementID) {
         let element = document.getElementById(elementID);
-        // let btn = document.getElementById("btn-" + elementID);
 
         if (element.style.display == "none" || element.style.display == "") {
             element.style.display = "block";
-            // btn.style.display = "none";
         } else {
             element.style.display = "none";
-            // btn.style.display = "block";
         }
     }
 
@@ -123,8 +120,6 @@ $pickupLocs = getPickupLocs('Bergen');
         let element_btn = document.getElementById(pickup_loc_ID);
         let element_chosen = document.getElementById('delivery-item-cont-chosen');
         let btn_chosen = document.getElementById('delivery-btn-chosen');
-
-        // console.log(pickup_loc_ID);
 
         $.ajax({
             url: '../xhr/pickup-loc.php?f=pickup-loc&s=change-user-pickup-loc',
