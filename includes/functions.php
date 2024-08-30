@@ -126,7 +126,7 @@ function getLatestUserID()
     global $sqlConnect;
 
     // SQL query to search for the term in your table
-    $sql = "SELECT * FROM Users";
+    $sql = "SELECT * FROM Users ORDER BY id DESC";
 
     // Execute the query
     $result = $sqlConnect->query($sql);
