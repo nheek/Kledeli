@@ -111,9 +111,11 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/includes/js_functions.php';
                 password_confirm: password_confirm
             },
             success: function(data) {
-                if (data) {
+                if (isNumber(data)) {
                     setCookie("userID", data);
                     goToPage("/");
+                } else {
+                    showWarning(data, 'red');
                 }
             }
         });

@@ -13,11 +13,36 @@ if ($_GET['f'] == 'login') {
         $password = mysqli_real_escape_string($sqlConnect, $_POST['password']);
         $password_confirm = mysqli_real_escape_string($sqlConnect, $_POST['password_confirm']);
 
+        if (strlen($name) < 5) {
+            echo "Name too short";
+            return false;
+        }
+        if (!isEmail($email)) {
+            echo "Invalid email";
+            return false;
+        }
+        if (getUserDetailsByUsername($username)) {
+            echo "User already exists";
+            return false;
+        }
+        if (strlen($username) < 5) {
+            echo "Username too short";
+            return false;
+        }
+        if (strlen($password) < 8) {
+            echo "Password too short";
+            return false;
+        }
+        if ($password != $password_confirm) {
+            echo "Password doesn't match";
+            return false;
+        }
+
         $query = "INSERT INTO Users (name, email, username, password) VALUES ('{$name}', '{$email}', '{$username}', '{$password}')";
 
         $result = mysqli_query($sqlConnect, $query);
         if ($result) {
-            echo getLatestUserID();
+            echo intval(getLatestUserID());
         }
     }
 

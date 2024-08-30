@@ -356,3 +356,7 @@ function getListTitle($link)
         return $result->fetch_assoc()["title"];
     }
 }
+function isEmail($email)
+{
+    return filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
+}

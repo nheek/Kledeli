@@ -93,4 +93,7 @@
     function splitIntoWords(inputString) {
         return inputString.split(/\s+/);
     }
+    function isNumber(value) {
+        return (typeof value === 'number') || !isNaN(Number(value));
+    }
 </script>
