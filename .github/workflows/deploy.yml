@@ -42,10 +42,6 @@ jobs:
             cd apps
             mkdir kledeli
             cd kledeli
-            
-            # Pull the Docker Compose project on the remote server
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/kledeli:latest
-            docker pull mysql
 
             rm -rf .env
             echo "MYSQL_PORT=${{ secrets.MYSQL_PORT }}" >> .env
@@ -66,5 +62,6 @@ jobs:
             cd .sql_data
             curl -O -L https://raw.githubusercontent.com/nheek/kledeli/main/.sql_data/create_database.sql
 
-            docker compose up -d
+            docker pull mysql:latest
+            docker compose up -d && curl -d "kledeli deployed successfully 🚀" https://ntfy.nheek.com/${{ secrets.NTFY_TOPIC }}
   
