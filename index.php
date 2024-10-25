@@ -1,15 +1,7 @@
 <?php
 // Enable error reporting
 error_reporting(E_ALL);
-
-// Optionally, display errors on the screen
 ini_set('display_errors', 1);
-
-// Your PHP code goes here
-?>
-
-<?php
-include_once $_SERVER['DOCUMENT_ROOT'] . '/style.php';
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +12,9 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/style.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="/uploads/favicon.ico" alt="favicon">
     <title>Kledeli</title>
+    <?php
+        include_once $_SERVER['DOCUMENT_ROOT'] . '/style.php';
+    ?>
 </head>
 
 <body class="w-full">
