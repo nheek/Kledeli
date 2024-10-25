@@ -61,7 +61,8 @@ jobs:
             mkdir .sql_data
             cd .sql_data
             curl -O -L https://raw.githubusercontent.com/nheek/kledeli/main/.sql_data/create_database.sql
-
-            docker pull mysql:latest
+            
+            cd ..
+            docker compose pull
             docker compose up -d && curl -d "kledeli deployed successfully 🚀" https://ntfy.nheek.com/${{ secrets.NTFY_TOPIC }}
   
