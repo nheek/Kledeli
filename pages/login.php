@@ -12,6 +12,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/includes/js_functions.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="/uploads/favicon.ico" alt="favicon">
+    <link href="../output.css" rel="stylesheet">
     <title>Logg på - Kledeli</title>
 </head>
 

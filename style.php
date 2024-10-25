@@ -1,5 +1,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="https://cdn.tailwindcss.com"></script>
+<link href="output.css" rel="stylesheet">
+<!-- <script src="https://cdn.tailwindcss.com"></script> -->
 <script>
     tailwind.config = {
         darkMode: 'class',

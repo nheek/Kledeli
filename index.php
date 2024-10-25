@@ -14,7 +14,8 @@ ini_set('display_errors', 1);
     <title>Kledeli</title>
     <?php
         include_once $_SERVER['DOCUMENT_ROOT'] . '/style.php';
-    ?>
+        ?>
+    <!-- <link href="output.css" rel="stylesheet"> -->
 </head>
 
 <body class="w-full">

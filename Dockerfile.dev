@@ -4,25 +4,28 @@ FROM php:7.4-apache
 # Set the working directory inside the container
 WORKDIR /var/www/html
 
-# Copy the current directory contents into the container at /var/www/html
-COPY . /var/www/html
-
-# Install any needed dependencies
+# Install needed dependencies and PHP extensions
 RUN apt-get update && apt-get install -y \
     git \
     zip \
     unzip \
     vim \
-    # Install Xdebug for development
+    curl \
     && pecl install xdebug \
-    && docker-php-ext-enable xdebug \
+    && docker-php-ext-install mysqli \
+    && a2enmod rewrite \
     && rm -rf /var/lib/apt/lists/*
 
-# Install mysqli extension
-RUN docker-php-ext-install mysqli
+# Install Node.js and npm
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - \
+    && apt-get install -y nodejs \
+    && rm -rf /var/lib/apt/lists/*
 
-# Enable Apache modules
-RUN a2enmod rewrite
+# Copy the current directory contents into the container
+COPY . /var/www/html
+
+# Install npm packages (including Tailwind CSS)
+RUN npm install
 
 # Copy the development PHP config file
 COPY php.ini /usr/local/etc/php/php.ini
@@ -39,6 +42,9 @@ RUN echo "display_errors=On" >> /usr/local/etc/php/conf.d/docker-php-dev.ini \
 
 # Set permissions (optional based on project needs)
 RUN chown -R www-data:www-data /var/www/html
+
+# Healthcheck
+HEALTHCHECK CMD curl --fail http://localhost/ || exit 1
 
 # By default, start Apache in foreground mode
 CMD ["apache2-foreground"]
