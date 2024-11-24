@@ -1,29 +1,9 @@
-version: '3'
-
 services:
-  php:
+  kledeli:
     build: .
     ports:
       - "3015:80"
-    depends_on:
-      - mysql-db
-    restart: unless-stopped
-    image: "nheek/kledeli:latest"
-    command: >
-      sh -c "echo 'ServerName localhost' >> /etc/apache2/apache2.conf &&
-             apache2-foreground"
-
-  mysql-db:
-    image: mysql:latest
     restart: unless-stopped
     env_file:
       - .env
-    environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-    volumes:
-      - mysql_db_data:/var/lib/mysql
-      - .sql_data:/docker-entrypoint-initdb.d/
-      - .custom_sql_settings:/etc/mysql/conf.d/
-
-volumes:
-  mysql_db_data:
+    image: "reg.nheek.com/nheek/kledeli:latest"

@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kledeli-d
+  labels:
+    app: kledeli
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kledeli
+  template:
+    metadata:
+      labels:
+        app: kledeli
+    spec:
+      imagePullSecrets:
+        - name: regcrednheek
+      containers:
+        - name: kledeli
+          image: reg.nheek.com/nheek/kledeli:latest
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              memory: "10Mi"
+              cpu: "40m"
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 10
+            periodSeconds: 2
+            timeoutSeconds: 2
+            failureThreshold: 10
+            successThreshold: 1
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 10
+            periodSeconds: 2
+            failureThreshold: 10
+          env:
+          - name: MYSQL_HOST
+            valueFrom:
+              secretKeyRef:
+                name: kledeli-secret
+                key: MYSQL_HOST
+          - name: MYSQL_USER
+            valueFrom:
+              secretKeyRef:
+                name: kledeli-secret
+                key: MYSQL_USER
+          - name: MYSQL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: kledeli-secret
+                key: MYSQL_PASSWORD
+          - name: MYSQL_DATABASE
+            valueFrom:
+              secretKeyRef:
+                name: kledeli-secret
+                key: MYSQL_DATABASE
