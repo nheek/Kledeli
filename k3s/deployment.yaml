@@ -23,24 +23,25 @@ spec:
             - containerPort: 80
           resources:
             requests:
-              memory: "10Mi"
+              memory: "40Mi"
               cpu: "40m"
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 80
-            initialDelaySeconds: 10
-            periodSeconds: 2
-            timeoutSeconds: 2
-            failureThreshold: 10
-            successThreshold: 1
-          livenessProbe:
-            httpGet:
-              path: /
-              port: 80
-            initialDelaySeconds: 10
-            periodSeconds: 2
-            failureThreshold: 10
+          # readinessProbe:
+          #   httpGet:
+          #     path: /
+          #     port: 80
+          #   initialDelaySeconds: 10
+          #   periodSeconds: 2
+          #   timeoutSeconds: 2
+          #   failureThreshold: 10
+          #   successThreshold: 1
+          # livenessProbe:
+          #   httpGet:
+          #     path: /
+          #     port: 80
+          #   initialDelaySeconds: 10
+          #   periodSeconds: 2
+          #   failureThreshold: 10
+          #
           env:
           - name: MYSQL_HOST
             valueFrom:
@@ -62,3 +63,12 @@ spec:
               secretKeyRef:
                 name: kledeli-secret
                 key: MYSQL_DATABASE
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values:
+                      - druig
